@@ -1,0 +1,66 @@
+﻿
+
+<div style="min-height: 750px;">
+
+    <div class="form-group mb-3">
+        <label for="inputData" class="mb-1">Input Data</label>
+        <input type="text" class="form-control" id="inputData" placeholder="Enter data">
+    </div>
+
+    <button type="submit" id="submit" class="btn btn-primary mb-5">Hash input data</button>
+
+    <br />
+    <label>Hashed Data:</label>
+    <br />
+    <p class="lead" type="text" id="outputData"></p>
+
+    <br />
+    <a href="/" class="btn btn-outline-warning">Back to Home Page</a>
+
+</div>
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    <script>
+
+        $(document).ready(function () {
+
+            $('#submit').click(function () {
+
+                var inputValue = $('#inputData').val();
+
+                if (inputValue.trim() === '') {
+                    alert('Input field cannot be empty!');
+                    event.preventDefault();
+                    return;
+                }
+
+                hashData(inputValue);
+            });
+
+        });
+
+        function hashData(input) {
+
+            $.ajax({
+                url: '@Url.Action("HashData", "Home")',
+                type: 'POST',
+                data: { input: input },
+                success: function (response) {
+                    $('#outputData').html(response);
+                },
+                error: function (xhr, status, error) {
+                    alert('Error');
+                }
+            });
+        }
+
+    </script>
+}

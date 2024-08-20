@@ -1,0 +1,17 @@
+﻿@{
+    var htmlString = "<strong>This is a text to use @Html.Raw</strong>";
+
+    var rawHtml = "<strong>This is a text to use Html.Encode</strong>";
+    var encodedHtml = Html.Encode(rawHtml);
+}
+
+<p>"Html.Raw" Text:</p>
+<h3>@Html.Raw(htmlString)</h3>
+
+<br />
+
+<p>"Html.Encode" Text:</p>
+<h3>@encodedHtml</h3>
+
+<br />
+<a href="/" class="btn btn-outline-warning">Back to Home Page</a>
