@@ -14,6 +14,17 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+// ÇÖÇÝå ˜ÑÏä Middleware ÈÑÇ? CSP Header
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self';");
+    await next();
+});
+
+
+
 app.UseStaticFiles();
 
 app.UseRouting();
