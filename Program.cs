@@ -1,9 +1,19 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Cyber_Security_App.Data;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+
+var connectionString = builder.Configuration["ConnectionStrings:AppConnectionString"];
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlite(connectionString);
+});
 
 
 if (!app.Environment.IsDevelopment())
@@ -16,7 +26,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection(); // هدایت به HTTPS
 
 
-// اضافه کردن Middleware برا? CSP Header
+// اضافه کردن Middleware برای CSP Header
 app.Use(async (context, next) =>
 {
     context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self';");
