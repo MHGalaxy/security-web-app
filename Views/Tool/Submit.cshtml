@@ -1,0 +1,7 @@
+﻿
+
+<form asp-action="Submit">
+    @Html.AntiForgeryToken()
+    <input type="text" name="data" />
+    <button type="submit">Submit</button>
+</form>

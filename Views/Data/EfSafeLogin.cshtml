@@ -1,8 +1,5 @@
 ﻿
-<h1>Vulnerable Login Page (to Sql Injection Attacks)</h1>
-
-<p class="lead">Sql Injection Data: <span class="text-danger">' OR 1=1 --</span></p>
-<p class="alert alert-info">it must be comment the CSP Header Middleware in Program.cs to test this page</p>
+<h1>Safe Login with Entity Framework Core ORM</h1>
 
 <form id="loginForm" class="mt-4 p-4 border rounded shadow-sm bg-light">
     <div class="form-group mb-2">
@@ -30,7 +27,7 @@
 
 
 
-@section Scripts{
+@section Scripts {
 
     <script>
 
@@ -47,7 +44,7 @@
                 // Send the data using AJAX
                 $.ajax({
                     type: 'POST',
-                    url: '/Data/VulnerableLogin', 
+                    url: '/Data/EfSafeLogin',
                     data: formData,
                     success: function (response) {
                         $('#loginResult').text(response);
